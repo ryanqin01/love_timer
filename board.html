@@ -1,138 +1,21 @@
-</pre><pre name="code" class="html"><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-    <HEAD>
-        <TITLE> New Document </TITLE>
-        <META NAME = "Generator"   CONTENT = "EditPlus">
-        <META NAME = "Author"      CONTENT = ""        >
-        <META NAME = "Keywords"    CONTENT = ""        >
-        <META NAME = "Description" CONTENT = ""        >
-    </HEAD>
-    <style type="text/css">
-        label{ color:#66ccff; font-size:20;   }
-        input{ height:20;font-size:10;padding:3}
-        td{ height:20}
-        tr{ background-color: #f9f9f9 }
-        td.title{ font-size:10;background-color: #EAEAEA; text-align:right}
-        td#ex{text-align:center }
-    </style> 
-    <BODY>
-        <br><label><caption><center>留言信息</center></caption></label><br>
-        <table width="410" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#CCCCCC">
-        <form name="form" method="post" id="form">
-            <tr> 
-                <td width="13%" class="title" >姓名</td>
-                <td width="53%"> 
-                    <input type="text" name="name" id="name" class="write" size="35" maxLength=4>
-                    <span style=" font-size: 8; color: red; vertical-align: top ">*4个字内
-                </td>
-            </tr>
-            <tr> 
-                <td class="title">性别</td>
-                <td >
-                    <select name="sex" id="sex" size="1" style="font-size:10">
-                        <option value="男" >男</option>
-                        <option value="女" >女</option>
-                    </select>
-                </td>
-            </tr>
-            <tr> 
-                <td class="title">手机</td>
-                <td> 
-                    <input name="phone" type="text" id="phone" size="35" class="write">
-                    <span style="font-size:8;color:red;vertical-align: top">*11位手机号码
-                </td>
-            </tr>
-            <tr> 
-                <td class="title">QQ</td>
-                <td> 
-                    <input name="qq" type="text" id="qq" size="35" maxLength=15 class="write">
-                    <span style="font-size:8;color:red;vertical-align: top">
-                </td>
-            </tr>
-            <tr> 
-                <td class="title">个人主页</td>
-                <td> 
-                    <input name="web" type="text" id="page" value="http://" size="35" maxLength=50 class="write"></td>
-            </tr>
-            <tr>
-                <td class="title">电子邮箱</td>
-                <td>
-                    <input name="email" type="text" id="email" value="" size="35" maxlength=50 class="write">
-                    <span style="font-size:8;color:red;vertical-align: top">*
-                </td>
-            </tr>
-            <tr> 
-                <td class="title">留言主题</td>
-                <td>
-                    <input name="title" type="text" class="write" id="title" size="35" maxLength=10>
-                    <span style="font-size:8;color:red;vertical-align: top">*
-                </td>
-            </tr>
-            <tr> 
-                <td class="title" valign="top">留言内容</td>
-                <td><textarea name="words" cols="50" rows="8" class="input1" id="words" 
-                              onKeyDown=gbcount(this.form.words,this.form.total,this.form.used,this.form.remain); 
-                              onKeyUp=gbcount(this.form.words,this.form.total,this.form.used,this.form.remain);></textarea>
-                    <span style="font-size:8;color:red;vertical-align: top">* 
-                </td>
-            </tr>
-            <tr> 
-                <td class="title">上传附件</td>
-                <td><input type="file" id="files" name="file" style="font-size:10">
-            </tr>
-            <tr> 
-                <td id="ex" colspan="2">
-                    <input type="hidden" name="action_e" value="Add_New"> 
-                    <p style="font-size: 9; color:red; text-align: left">*为必填字段</p>
-                    <input type="button" onclick="DoSave();" name="Submit" value=" 提 交 " class="input1" style="cursor:pointer">
-                    <input type="reset" name="Submit2" value=" 重 写 " class="input1" style="cursor:pointer" > 
-                </td>
-            </tr>
-        </form>
-        </table>
-        <SCRIPT LANGUAGE="JavaScript">
-            function checkForm(){
-                var name    =  document.getElementById('name').value;var tip1  = "";
-                var sex     =  document.getElementById('sex').value;
-                var phone   =  document.getElementById('phone').value;var tip2 = "";
-                var email   =  document.getElementById('email').value;var tip3 = "";
-                var qq      =  document.getElementById('qq').value;var tip4    = "";
-                var page    =  document.getElementById('page').value;
-                var subject =  document.getElementById('title').value;var tip5 = "";
-                var text    =  document.getElementById('words').value;var tip6 = "";
-                var file    =  document.getElementById('files').value;
-                if( name == "" )  tip1 = "姓名不能为空";  
-                    else{  if(name.length>4) 
-                            tip1 = "姓名过长！"; }
-                if( phone == "" ) tip2 = "手机号码不能为空"; 
-                    else{  if(!/^(13[0-9]\d{8}$|15[012356789]\d{8}$|18[0-9]\{8}$|14[57]\d{8})$/.test(phone)) 
-                            tip2 = "手机号码格式不正确"; }
-                if( email == "" ) tip3 = "邮箱地址不能为空";
-                    else{  if(!/^([0-9a-zA-Z_]{5,12}@(163|126|qq|yahoo|gmail|sina|QQ)\.(com|com\.cn|cn|la))$/.test(email)) 
-                            tip3 = "邮箱地址格式不正确"; }
-                if( qq == ""   ) tip4 = "QQ不能为空";
-                    else{  if(!/^([0-9]{5,11})$/.test(qq)) 
-                            tip4 = "QQ格式不正确"; }
-                if( subject == "" ) tip5 = "主题不能为空";
-                if( text == "" ) tip6 = "留言内容不能为空";
-                if( page == "http://" ) page = "无";
-                if( file == "" ) file="无";
-                    else file = file.substring( file.lastIndexOf('\\')+1);
-                /*if( tip1 == "" && tip2 == "" && tip3 == "" && tip4 == "" && tip5 == "" && tip6 == "" ) 
-                {    if( confirm( "姓名:  " + name + "\n性别:  " + sex + "\n手机:  " + phone + "\nQQ:  " + qq + "\n个人主页:  " + page
-                             + "\n电子邮箱:  " + email + "\n留言主题:  " + subject + "\n留言内容:  " + text +"\n附件:  " + file ) ) 
-                        return true; }
-                else {  alert( tip1 + "\n" + tip2 + "\n" + tip3 + "\n" + tip4 + "\n" + tip5 + "\n" + tip6 ); return false; }*/
-                        return true;
-            }
-            function DoSave(){
-                if( checkForm() ){
-                    alert( "留言成功！" );
-                    document.form.action="Message.php";
-                    document.form.enctype = "multipart/form-data";
-                    document.form.submit();
-                }
-            }
-        </SCRIPT>
-    </BODY>
-</HTML>
+<div id="disqus_thread"></div>
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://http-mengyali-love-board.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                            

@@ -3,8 +3,20 @@
     <title>留言板</title>
     <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
     <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+    <style>
+        body {
+            -webkit-font-smoothing: antialiased;
+            font-family: Helvetica, Tahoma, Arial, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑", SimSun, "宋体", Heiti, "黑体", sans-serif;
+            font-size: 85%;
+            margin: 0;
+            color: rgb(255, 215, 0);
+        }
+    </style>
 </head>
 <body>
+    <div class="content">
+        <h2>留言板</h2>
+    </div>
     <div id="vcomments"></div>
     <script>
         new Valine({
